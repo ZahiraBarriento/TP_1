@@ -11,7 +11,7 @@ int main()
     {
         system("pause");
         system("cls");
-        printf("   >>> MENU CALCULADORA<<<");
+        printf("\n   >>> MENU CALCULADORA<<<");
         printf("\n\n 1 .Ingresar primer operando (A=%.2f) ",numeroUno);
         printf("\n\n 2 .Ingresar segundo operando (B=%.2f) ",numeroDos);
         printf("\n\n 3 .Calcular todas las operaciones:");
@@ -27,19 +27,19 @@ int main()
 
         switch(opcion)
         {
-        case 1:
+        case 1: //PRIMER OPERANDO
             printf("\n Ingrese el primer operando: ");
             scanf ("%f", &numeroUno);
             flag1=1;
             break;
 
-        case 2:
+        case 2: //SEGUNDO OPERANDO
             printf("\n Ingrese segundo operando: ");
             scanf ("%f", &numeroDos);
             flag2=1;
             break;
 
-        case 3:
+        case 3: //LLAMAR FUNCIONES PARA REALIZAR LAS CUENTAS
             if (flag1==1 && flag2==1)
             {
                 suma=sum(numeroUno,numeroDos);
@@ -49,25 +49,25 @@ int main()
                 factorialA=factorial_A(numeroUno);
                 factorialB=factorial_B(numeroDos);
 
-                printf("Calculos realizados\n");
+                printf("\nRealizando calculos...\n\n");
             }
 
             else
             {
-                printf("\nNo se han ingresado ningun numero \n");
+                printf("\nError.No se han ingresado ningun numero. \n\n");
             }
             break;
 
-        case 4:
-            if (flag1==1 || flag2==1)
+        case 4: //RESULTADOS
+            if (flag1==1 && flag2==1)
             {
                 printf("\nLa suma entre %.2f+%.2f es: %.2f\n", numeroUno, numeroDos, suma);
                 printf("\nLa resta entre %.2f-%.2f es: %.2f\n",numeroUno, numeroDos, resta);
 
                 if(numeroDos==0)
                 {
-                    printf("\nError. No es posible dividir por cero o un numero negativo\n");
-                    printf("La division entre %.2f/%.2f no se puede calcular\n", numeroUno, numeroDos);
+                    printf("\nError. No es posible dividir por cero.\n");
+                    printf("La division entre %.2f/%.2f no se puede calcular.\n", numeroUno, numeroDos);
                 }
                 else
                 {
@@ -78,7 +78,7 @@ int main()
 
                 if(numeroUno<0)
                 {
-                    printf("\nError. No es posible hacer el factorial de un numero negativo\n");
+                    printf("\nError. No es posible hacer el factorial de un numero negativo.\n");
                 }
                 else
                 {
@@ -87,17 +87,24 @@ int main()
 
                 if(numeroDos<0)
                 {
-                    printf("\nError. No es posible hacer el factorial de un numero negativo\n");
+                    printf("\nError. No es posible hacer el factorial de un numero negativo.\n");
                 }
                 else
                 {
                     printf("\nEl factorial de B=%f! es: %d\n\n", numeroDos, factorialB);
                 }
+
+                numeroUno=0;
+                numeroDos=0;
+            }
+            else
+            {
+                printf("\nError. No se puede mostrar los resultados, ingrese los operando.\n\n");
             }
             break;
 
         case 5:
-            printf ("\nGracias por utilizar la calculadora\n");
+            printf ("\n\nGracias por utilizar la calculadora.\n\n");
             break;
 
         default:
