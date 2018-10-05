@@ -80,6 +80,7 @@ int main()
             break;
         default:
             printf("Opcion incorrecta!");
+            break;
         }
     }
     while(seguir=='s');
