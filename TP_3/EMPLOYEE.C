@@ -26,7 +26,8 @@ Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajad
     Employee* this;
 
     this = employee_new();
-    if(this != NULL)
+    
+    if(this != NULL && idStr =! NULL && nombreStr =! NULL && horasTrabajadasStr != NULL && sueldoStr != NULL)
     {
         auxId = atoi(idStr);
         employee_setId(this,auxId);
