@@ -36,7 +36,7 @@ int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
 
     pFile=fopen(path,"rb");
 
-    if(pFile != NULL && pArrayListEmployee != NULL)
+    if(pFile != NULL && pArrayListEmployee != NULL && path != NULL)
     {
         parser_EmployeeFromBinary(pFile, pArrayListEmployee);
         retorno=0;
@@ -280,80 +280,85 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
     float sueldoAuxiliar;
 
     len=ll_len(pArrayListEmployee);
-
-    if(len>0)
+    
+    if(pArrayListEmployee =! NULL)
     {
-        system("cls");
-        printf(" *** LISTA DE EMPLEADOS ***\n\n");
-        printf("   ID\t\tNOMBRE\tHS. TRABAJADAS\t  SUELDO\n\n");
-
-        for(int i=0; i<len; i++)
+         if(len>0)
         {
-            this = (Employee*) ll_get(pArrayListEmployee,i);
-            employee_getId(this, &idAuxiliar);
-            employee_getNombre(this,nombreAuxiliar);
-            employee_getHorasTrabajadas(this,&horasAuxiliar);
-            employee_getSueldo(this,&sueldoAuxiliar);
+            system("cls");
+            printf(" *** LISTA DE EMPLEADOS ***\n\n");
+            printf("   ID\t\tNOMBRE\tHS. TRABAJADAS\t  SUELDO\n\n");
 
-            printf(" %4d\t%12s\t\t%4d\t$ %.2f\n\n",idAuxiliar,nombreAuxiliar,horasAuxiliar,sueldoAuxiliar);
-            retorno = 0;
+            for(int i=0; i<len; i++)
+            {
+                this = (Employee*) ll_get(pArrayListEmployee,i);
+                employee_getId(this, &idAuxiliar);
+                employee_getNombre(this,nombreAuxiliar);
+                employee_getHorasTrabajadas(this,&horasAuxiliar);
+                employee_getSueldo(this,&sueldoAuxiliar);
+
+                printf(" %4d\t%12s\t\t%4d\t$ %.2f\n\n",idAuxiliar,nombreAuxiliar,horasAuxiliar,sueldoAuxiliar);
+                retorno = 0;
+            }
+        }
+
+        else
+        {
+            printf("\n No hay datos cargados.\n\n");
         }
     }
 
-    else
-    {
-        printf("\n No hay datos cargados.\n\n");
-    }
-
     return retorno;
-
 }
 ///------------------------------------------------------------------------------------
 ///ORDENAR EMPLEADO
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
     int opcion;
-
-    do
+    
+    if(pArrayListEmployee != NULL)
     {
-        system("cls");
-        printf("\n *** ORDENAMIENTO ***\n\n");
-        printf(" 1. Ordenar por ID.\n");
-        printf(" 2. Ordenar por nombre.\n");
-        printf(" 3. Ordenar por hs. trabajadas.\n");
-        printf(" 4. Ordenar por sueldo.\n");
-        printf(" 5. Salir.\n\n");
-        printf(" Seleccione una opcion: ");
-        scanf("%d",&opcion);
-
-        switch(opcion)
+        do
         {
-        case 1:
-            ll_sort(pArrayListEmployee, employee_sortById, 0);
-            printf("\n Se ha ordenado correctamente.\n\n");
-            system("pause");
-            break;
-        case 2:
-            ll_sort(pArrayListEmployee, employee_sortByName, 0);
-            printf("\n Se ha ordenado correctamente.\n\n");
-            system("pause");
-            break;
-        case 3:
-            ll_sort(pArrayListEmployee, employee_sortByHsWorked, 0);
-            printf("\n Se ha ordenado correctamente.\n\n");
-            system("pause");
-            break;
-        case 4:
-            ll_sort(pArrayListEmployee, employee_sortBySalary, 0);
-            printf("\n Se ha ordenado correctamente.\n\n");
-            system("pause");
-            break;
-        case 5:
-            printf("\n Saliendo..\n\n");
-            break;
+            system("cls");
+            printf("\n *** ORDENAMIENTO ***\n\n");
+            printf(" 1. Ordenar por ID.\n");
+            printf(" 2. Ordenar por nombre.\n");
+            printf(" 3. Ordenar por hs. trabajadas.\n");
+            printf(" 4. Ordenar por sueldo.\n");
+            printf(" 5. Salir.\n\n");
+            printf(" Seleccione una opcion: ");
+            scanf("%d",&opcion);
+
+            switch(opcion)
+            {
+            case 1:
+                ll_sort(pArrayListEmployee, employee_sortById, 0);
+                printf("\n Se ha ordenado correctamente.\n\n");
+                system("pause");
+                break;
+            case 2:
+                ll_sort(pArrayListEmployee, employee_sortByName, 0);
+                printf("\n Se ha ordenado correctamente.\n\n");
+                system("pause");
+                break;
+            case 3:
+                ll_sort(pArrayListEmployee, employee_sortByHsWorked, 0);
+                printf("\n Se ha ordenado correctamente.\n\n");
+                system("pause");
+                break;
+            case 4:
+                ll_sort(pArrayListEmployee, employee_sortBySalary, 0);
+                printf("\n Se ha ordenado correctamente.\n\n");
+                system("pause");
+                break;
+            case 5:
+                printf("\n Saliendo..\n\n");
+                break;
+            }
         }
+        while(opcion!=5);
     }
-    while(opcion!=5);
 
     return 1;
 }
@@ -397,7 +402,7 @@ int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
 
     len=ll_len(pArrayListEmployee);
 
-    if(pFile != NULL && pArrayListEmployee != NULL)
+    if(pFile != NULL && pArrayListEmployee != NULL && path != NULL)
     {
         //fprintf(pFile, "id,nombre,horasTrabajadas,sueldo\n");
         //fprintf(pFile, "%d,%s,%d,%f\n", this->id, this->nombre, this->horasTrabajadas, this->sueldo);
@@ -422,7 +427,7 @@ int controller_findEmployee(LinkedList* pArrayListEmployee, int id)
     Employee* this;
     int retorno=-1, len;
 
-    if(pArrayListEmployee!=NULL)
+    if(pArrayListEmployee!=NULL && this != NULL)
     {
         len=ll_len(pArrayListEmployee);
 
